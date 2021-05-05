@@ -122,11 +122,10 @@ export default {
               first_name: profile.getGivenName(),
               last_name: profile.getFamilyName(),
               email: profile.getEmail(),
-              phone: '0',
+              phone: 'None',
               password: 'password',
             })
             .then(response => {
-              console.log(response.data)
             })
             .catch(function (error) {
               //   return

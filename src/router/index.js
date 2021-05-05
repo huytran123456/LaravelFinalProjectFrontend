@@ -7,7 +7,7 @@ import HomePage from "../components/HomePage.vue";
 // Define some routes
 // Each route should map to a component.
 const routes = [
-    {path: '/about', component: Test,meta: { title: 'Test' }},
+    {path: '/about', component: Test,meta: { title: 'About' }},
     {path: '/login', component: Login,meta: { title: 'Login' }},
     {path: '/signup', component: Signup,meta: { title: 'Signup' }},
     {path: '/rentalFilmList', component: FilmForRent,meta: { title: 'Rent Film' }},
@@ -22,7 +22,6 @@ const router = createRouter({
     history: createWebHistory(),
     routes, // short for `routes: routes`
 })
-const DEFAULT_TITLE = 'DEFAULT TITLE'
 // router.afterEach((to, from) => {
 //     // if (to.path == '/login' && to.path=='/' && to.path== '/signup') next()
 //     // else next({path:'/login'})
