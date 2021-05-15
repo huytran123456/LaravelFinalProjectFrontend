@@ -1,5 +1,5 @@
 import {createWebHistory, createRouter, createWebHashHistory} from 'vue-router'
-import Test from '../components/Test.vue'
+import PageNotFound from '../components/404.vue'
 import Login from '../components/Login.vue'
 import Signup from "../components/Signup.vue";
 import FilmForRent from "../components/FilmForRent.vue";
@@ -8,10 +8,12 @@ import ChangeSocialPassword from '../components/ChangeSocialPassword.vue'
 import ChangePassword from "../components/ChangePassword.vue";
 import SendMailChP from "../components/SendMailChP.vue"
 import EditUser from "../components/EditUser.vue";
+import About from "../components/About.vue";
+import RentalOrder from '../components/RentalOrder.vue'
 // Define some routes
 // Each route should map to a component.
 const routes = [
-    {path: '/about/:id?', component: Test, meta: {title: 'About'}, name: 'about'},
+    {path: '/about', component: About, meta: {title: 'About'}, name: 'about'},
     {path: '/login', component: Login, meta: {title: 'Login'}, name: 'login'},
     {path: '/signup', component: Signup, meta: {title: 'Signup'}, name: 'signup'},
     {path: '/rentalFilmList', component: FilmForRent, meta: {title: 'Rent Film'}, name: 'rentalFilmList'},
@@ -42,9 +44,15 @@ const routes = [
     },
     {
         path: '/:catchAll(.*)',
-        component: Test,
+        component: PageNotFound,
         name: 'NotFound'
-    }
+    },
+    {
+        path: '/rentalOrder/:id',
+        component: RentalOrder,
+        meta: {title: 'Order'},
+        name: 'rentalOrder',
+    },
 ]
 
 // 3. Create the router instance and pass the `routes` option

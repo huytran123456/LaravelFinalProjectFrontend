@@ -87,17 +87,19 @@ export default {
           })
           .then(response => {
             console.log(response)
+            this.$router.push('/')
           })
           .catch(function (error) {
 
             // let k;
+            this.loading = false
             let response_message = ""
             for (let k in error.response.data.errors) {
               response_message += error.response.data.errors[k] + "</br>"
             }
             document.getElementById("error_message").innerHTML=response_message
           })
-      this.loading = false
+
     }
   },
 }

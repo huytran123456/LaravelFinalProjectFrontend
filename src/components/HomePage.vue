@@ -3,7 +3,7 @@
     <main role="main" class="inner cover">
       <h1 class="cover-heading">THIS IS MY FINAL PROJECT FOR LARAVEL COURSE.</h1> <br>
       <h1>THIS PROJECT IS ABOUT VIDEO RENTAL SHOP.</h1>
-      <img scr="public/film.jpg">
+      <img alt="Guess it" :src="'tenor.gif'" class="img-fluid">
     </main>
   </div>
 </template>

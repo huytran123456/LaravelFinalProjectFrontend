@@ -109,7 +109,6 @@ export default {
     save_edit: async function () {
       this.loading = false
       this.loading2 = true
-      console.log(document.forms['edit_form']['edit_avatar'].files[0])
       let formData = new FormData();
       formData.append("avatar", document.forms['edit_form']['edit_avatar'].files[0]);
       formData.append("first_name", document.getElementById('first_name').value);

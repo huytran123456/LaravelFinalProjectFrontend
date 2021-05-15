@@ -1,8 +1,25 @@
 <template>
   <div class="container-xl">
-    <h1><strong id="error_message"></strong></h1>
+    <p class="h3 mb-4" style="text-align: left"><strong>Product id</strong></p>
+    <input
+        type="text"
+        id="order_id"
+        class="form-control mb-4"
+        placeholder="Product id"
+    />
+    <button
+        class="btn btn-dark-green btn-lg my-4"
+        style="background-color: green;display: block"
+        id="login_button"
+        v-bind:class="{ disabled: loading }"
+        @click="orderProduct"
+    >
+      Order specify product from id bar
+    </button>
   </div>
   <div class="container-fluid">
+    <h1><strong id="error_message">PLEASE WAIT...</strong></h1>
+    <img id='loading_gif' alt="Vue about" :src="'loading1.gif'" class="img-fluid">
     <table class="display responsive nowrap" id="index_table">
     </table>
   </div>
@@ -15,14 +32,36 @@ import $ from 'jquery';
 import * as dt from 'datatables.net-dt'
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
+import Cookies from 'js-cookie'
 
 dt(window, $)
 export default {
   name: "App",
-  mounted: async function() {
+  data() {
+    return {
+      loading: false
+    }
+  },
+  methods: {
+    orderProduct() {
+      this.loading = true
+      let idd
+      idd = 1
+      if (document.getElementById("order_id").value) {
+        idd = document.getElementById("order_id").value
+      }
+      this.$router.push({name: 'rentalOrder', params: {id: idd}})
+    }
+  },
+  created: async function () {
+    if (!Cookies.get('token')) {
+      this.loading = true
+    }
     await axios.get('http://127.0.0.1:8000/api/film/getList')
         .then(function (response) {
           //console.log(response);
+          document.getElementById("error_message").innerHTML = ''
+          document.getElementById('loading_gif').remove()
           $('#index_table').DataTable({
             "data": response.data,
             responsive: true,
@@ -49,7 +88,7 @@ export default {
                   var result = ''
                   for (var key in dataField) {
                     result +=
-                        '  <button  type="button" >' + dataField[key].actor_first_name +" "+ dataField[key].actor_last_name + '</button>'
+                        '  <button  type="button" >' + dataField[key].actor_first_name + " " + dataField[key].actor_last_name + '</button>'
                   }
                   return result
                 }
@@ -59,8 +98,7 @@ export default {
         })
         .catch(function (error) {
           console.log(error)
-          // let k;
-          document.getElementById("error_message").innerHTML = error.response.data.errors + "</br>"
+          document.getElementById("error_message").innerHTML = 'Something wrong'
 
         })
   },
