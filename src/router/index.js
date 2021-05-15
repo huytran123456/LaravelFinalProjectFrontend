@@ -1,17 +1,58 @@
-import {createWebHistory, createRouter} from 'vue-router'
-import Test from '../components/Test.vue'
+import {createWebHistory, createRouter, createWebHashHistory} from 'vue-router'
+import PageNotFound from '../components/404.vue'
 import Login from '../components/Login.vue'
 import Signup from "../components/Signup.vue";
 import FilmForRent from "../components/FilmForRent.vue";
 import HomePage from "../components/HomePage.vue";
+import ChangeSocialPassword from '../components/ChangeSocialPassword.vue'
+import ChangePassword from "../components/ChangePassword.vue";
+import SendMailChP from "../components/SendMailChP.vue"
+import EditUser from "../components/EditUser.vue";
+import About from "../components/About.vue";
+import RentalOrder from '../components/RentalOrder.vue'
 // Define some routes
 // Each route should map to a component.
 const routes = [
-    {path: '/about', component: Test,meta: { title: 'Test' }},
-    {path: '/login', component: Login,meta: { title: 'Login' }},
-    {path: '/signup', component: Signup,meta: { title: 'Signup' }},
-    {path: '/rentalFilmList', component: FilmForRent,meta: { title: 'Rent Film' }},
-    {path: '/', component: HomePage,meta: { title: 'Home' }},
+    {path: '/about', component: About, meta: {title: 'About'}, name: 'about'},
+    {path: '/login', component: Login, meta: {title: 'Login'}, name: 'login'},
+    {path: '/signup', component: Signup, meta: {title: 'Signup'}, name: 'signup'},
+    {path: '/rentalFilmList', component: FilmForRent, meta: {title: 'Rent Film'}, name: 'rentalFilmList'},
+    {path: '/', component: HomePage, meta: {title: 'Home'}, name: 'home'},
+    {
+        path: '/changeSocialPassword',
+        component: ChangeSocialPassword,
+        meta: {title: 'Change Social Password'},
+        name: 'changeSocialPassword',
+    },
+    {
+        path: '/changePassword/:id',
+        component: ChangePassword,
+        meta: {title: 'Change Password'},
+        name: 'changePassword',
+    },
+    {
+        path: '/sendMailChP',
+        component: SendMailChP,
+        meta: {title: 'Confirm your email.'},
+        name: 'sendMailChP',
+    },
+    {
+        path: '/editUser',
+        component: EditUser,
+        meta: {title: 'Edit User'},
+        name: 'editUser',
+    },
+    {
+        path: '/:catchAll(.*)',
+        component: PageNotFound,
+        name: 'NotFound'
+    },
+    {
+        path: '/rentalOrder/:id',
+        component: RentalOrder,
+        meta: {title: 'Order'},
+        name: 'rentalOrder',
+    },
 ]
 
 // 3. Create the router instance and pass the `routes` option
@@ -19,10 +60,10 @@ const routes = [
 // keep it simple for now.
 const router = createRouter({
     // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-    history: createWebHistory(),
+    history: createWebHashHistory(),
+    //history: createWebHistory(),
     routes, // short for `routes: routes`
 })
-const DEFAULT_TITLE = 'DEFAULT TITLE'
 // router.afterEach((to, from) => {
 //     // if (to.path == '/login' && to.path=='/' && to.path== '/signup') next()
 //     // else next({path:'/login'})
