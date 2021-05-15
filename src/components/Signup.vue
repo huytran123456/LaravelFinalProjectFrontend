@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container-xl">
     <h1><strong id="error_message"></strong></h1>
+  </div>
+  <div class="container">
     <div class="d-flex justify-content-center align-items-center container-xl">
-      <form class="border border-light p-5" style="width: 80%;text-align: center" @submit.prevent="signup">
+      <form class="p-5" style="width: 80%;text-align: center" @submit.prevent="signup">
         <p class="h2 mb-4 text-center"><strong>SIGNUP</strong></p>
         <p class="h6 mb-4" style="text-align: left"><strong>EMAIL</strong></p>
         <input
@@ -89,9 +91,11 @@ export default {
           .catch(function (error) {
 
             // let k;
+            let response_message = ""
             for (let k in error.response.data.errors) {
-              document.getElementById("error_message").innerHTML += error.response.data.errors[k] + "</br>"
+              response_message += error.response.data.errors[k] + "</br>"
             }
+            document.getElementById("error_message").innerHTML=response_message
           })
       this.loading = false
     }

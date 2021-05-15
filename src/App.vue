@@ -1,6 +1,6 @@
 <template>
-  <Header/>
-  <router-view/>
+    <Header/>
+    <router-view/>
 </template>
 
 <script>
@@ -26,5 +26,11 @@ export default {
   color: #2c3e50;
   padding: 0px;
 }
-
+body {
+  background: url("background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 </style>
