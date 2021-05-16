@@ -16,6 +16,7 @@
     >
       Order specify product from id bar
     </button>
+    <p class="h3 mb-4" style="text-align: left" id="login_message"></p>
   </div>
   <div class="container-fluid">
     <h1><strong id="error_message">PLEASE WAIT...</strong></h1>
@@ -56,6 +57,7 @@ export default {
   created: async function () {
     if (!Cookies.get('token')) {
       this.loading = true
+
     }
     await axios.get('http://127.0.0.1:8000/api/film/getList')
         .then(function (response) {
@@ -101,6 +103,11 @@ export default {
           document.getElementById("error_message").innerHTML = 'Something wrong'
 
         })
+  },
+  mounted() {
+    if (this.loading) {
+      document.getElementById('login_message').innerHTML = '<strong>' + "You must login to order" + '</strong>'
+    }
   },
 }
 
