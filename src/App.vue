@@ -1,6 +1,7 @@
 <template>
-    <Header/>
-    <router-view/>
+  <Header/>
+  <p>{{ $t("hello") }}</p>
+  <router-view/>
 </template>
 
 <script>
@@ -12,6 +13,16 @@ export default {
   components: {
     Header
   },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to, from) {
+        if (this.$route.name) {
+          document.title = this.$t("title."+this.$route.name)
+        }
+      }
+    }
+  }
 };
 // This starter template is using Vue 3 experimental <script setup> SFCs
 // Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
@@ -26,6 +37,7 @@ export default {
   color: #2c3e50;
   padding: 0px;
 }
+
 body {
   background: url("background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;

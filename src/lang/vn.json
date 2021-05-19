@@ -1,0 +1,16 @@
+{
+  "hello": "Xin chao",
+  "title": {
+    "home": "Trang chu",
+    "about": "Ve chung toi",
+    "signup": "Dang ky",
+    "rentalFilmList": "Thue phim",
+    "login": "Dang nhap",
+    "changeSocialPassword": "Change Social Password",
+    "changePassword": "Change Password",
+    "sendMailChP": "Confirm your email.",
+    "editUser": "Edit User",
+    "NotFound": "Not found",
+    "rentalOrder": "Order"
+  }
+}

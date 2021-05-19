@@ -45,6 +45,7 @@ const routes = [
     {
         path: '/:catchAll(.*)',
         component: PageNotFound,
+        meta: {title: 'Not found'},
         name: 'NotFound'
     },
     {
@@ -72,7 +73,8 @@ const router = createRouter({
 //     })
 // })
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title;
+    //document.title = to.meta.title;
+    document.title = to.name;
     next();
 });
 export default router

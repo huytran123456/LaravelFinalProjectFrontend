@@ -1,0 +1,16 @@
+{
+  "hello": "Hello",
+  "title": {
+    "home": "Home",
+    "about": "About",
+    "signup": "Signup",
+    "rentalFilmList": "Rent Film",
+    "login": "Login",
+    "changeSocialPassword": "Change Social Password",
+    "changePassword": "Change Password",
+    "sendMailChP": "Confirm your email.",
+    "editUser": "Edit User",
+    "NotFound": "Not found",
+    "rentalOrder": "Order"
+  }
+}

@@ -18,10 +18,12 @@
     </button>
     <p class="h3 mb-4" style="text-align: left" id="login_message"></p>
   </div>
+  <router-link to=""></router-link>
   <div class="container-fluid">
     <h1><strong id="error_message">PLEASE WAIT...</strong></h1>
     <img id='loading_gif' alt="Vue about" :src="'loading1.gif'" class="img-fluid">
     <table class="display responsive nowrap" id="index_table">
+
     </table>
   </div>
 </template>
@@ -34,13 +36,16 @@ import * as dt from 'datatables.net-dt'
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import Cookies from 'js-cookie'
+import {createApp, nextTick} from 'vue'
+
 
 dt(window, $)
 export default {
   name: "App",
   data() {
     return {
-      loading: false
+      loading: false,
+      count_page: 1,
     }
   },
   methods: {
@@ -60,8 +65,7 @@ export default {
 
     }
     await axios.get('http://127.0.0.1:8000/api/film/getList')
-        .then(function (response) {
-          //console.log(response);
+        .then((response) => {
           document.getElementById("error_message").innerHTML = ''
           document.getElementById('loading_gif').remove()
           $('#index_table').DataTable({
@@ -97,6 +101,8 @@ export default {
               },
             ]
           });
+
+          nextTick()
         })
         .catch(function (error) {
           console.log(error)
